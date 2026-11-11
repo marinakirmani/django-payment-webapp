@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Admin - Create Administrator{% endblock %}
+
+{% block content %}
+    <div class="card p-4 mx-auto" style="max-width: 560px;">
+        <h1 class="h3 mb-3">Create New Administrator</h1>
+
+        {% if message %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endif %}
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">Create Admin</button>
+            <a href="{% url 'home' %}" class="btn btn-link">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

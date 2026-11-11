@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Send Money - WebApps2026{% endblock %}
+
+{% block content %}
+    <div class="card p-4 mx-auto" style="max-width: 560px;">
+        <h1 class="h3 mb-3">Send Money</h1>
+
+        {% if message %}
+            {% if 'successful' in message %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% else %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endif %}
+        {% endif %}
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">Send</button>
+            <a href="{% url 'home' %}" class="btn btn-link">Cancel</a>
+        </form>
+    </div>
+{% endblock %}
